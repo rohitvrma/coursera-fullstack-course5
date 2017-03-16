@@ -2,12 +2,11 @@
 'use strict';
 
 angular.module('LunchChecker', [])
-.controller('LunchCheckController', LunchCheckController)
-.filter('loves', LovesFilter);
+.controller('LunchCheckController', LunchCheckController);
 
-LunchCheckController.$inject = ['$scope', 'lovesFilter'];
+LunchCheckController.$inject = ['$scope'];
 
-function LunchCheckController($scope, lovesFilter) {
+function LunchCheckController($scope) {
   $scope.lunchItemsMessage = "";
   $scope.checkLunchItems = function () {
     var items = [];
@@ -23,17 +22,7 @@ function LunchCheckController($scope, lovesFilter) {
     } else {
         $scope.lunchItemsMessage = "Please enter data first";
     }
-
-    $scope.lunchItems = lovesFilter($scope.lunchItems);
   };
-}
-
-function LovesFilter(){
-  return function(input) {
-    input = input || "";
-    input = input.replace("likes", "loves");
-    return input;
-  }
 }
 
 })();
